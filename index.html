@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✨ 청소 당번 추첨기 | 실시간 랜덤 당번 뽑기</title>
+  <meta name="description" content="1부터 30 사이의 번호 중 공정하게 5명의 청소 당번을 선정하는 프리미엄 웹앱입니다. 화려한 애니메이션과 사운드 효과를 경험해보세요.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-decorations">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+  </div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <span class="sparkle-icon">✨</span>
+        <h1 class="logo-title">청소 당번 추첨기</h1>
+        <span class="sparkle-icon">✨</span>
+      </div>
+      <p class="logo-subtitle">클릭 한 번으로 쉽고 공정하게 당번을 선정해 보세요!</p>
+    </header>
+
+    <main class="app-main">
+      <!-- Left Panel: Configuration & Grid -->
+      <section class="panel-left">
+        <!-- Settings Card -->
+        <div class="glass-card settings-card">
+          <h2 class="section-title"><span class="icon">⚙️</span> 설정</h2>
+          <div class="settings-grid">
+            <div class="input-group">
+              <label for="total-candidates">최대 번호 (1 ~ N)</label>
+              <input type="number" id="total-candidates" value="30" min="5" max="100">
+            </div>
+            <div class="input-group">
+              <label for="winner-count">뽑을 인원수</label>
+              <input type="number" id="winner-count" value="5" min="1" max="10">
+            </div>
+            <div class="input-group toggle-group">
+              <span class="toggle-label">효과음 소리</span>
+              <label class="switch">
+                <input type="checkbox" id="sound-toggle" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grid Card -->
+        <div class="glass-card grid-card">
+          <div class="card-header">
+            <h2 class="section-title"><span class="icon">👥</span> 후보자 현황</h2>
+            <span class="candidate-count" id="candidate-count-display">총 30명</span>
+          </div>
+          <div class="number-grid-wrapper">
+            <div class="number-grid" id="number-grid">
+              <!-- JS will dynamically generate 1 to 30 cells here -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Panel: Selection & Live Board -->
+      <section class="panel-right">
+        <!-- Main Drawing Card -->
+        <div class="glass-card draw-card">
+          <div class="draw-status-badge" id="draw-status">대기 중...</div>
+          
+          <!-- Drawing Display Wheel/Slot -->
+          <div class="draw-wheel-container">
+            <div class="wheel-outer">
+              <div class="wheel-inner">
+                <span class="current-draw-number" id="current-rolling-number">?</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="actions-container">
+            <button id="btn-draw" class="btn btn-primary">
+              <span class="btn-glow"></span>
+              <span class="btn-text">🚀 당번 추첨 시작!</span>
+            </button>
+            <button id="btn-reset" class="btn btn-secondary">
+              <span>🔄 초기화</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Winners Display Card -->
+        <div class="glass-card winners-card">
+          <h2 class="section-title"><span class="icon">🎉</span> 선정된 청소 당번</h2>
+          <div class="winners-container" id="winners-container">
+            <!-- Winners will be rendered here with dynamic animation -->
+            <div class="empty-winners-message" id="empty-winners-msg">
+              추첨을 시작하면 여기에 당첨자가 표시됩니다.
+            </div>
+          </div>
+        </div>
+
+        <!-- History Card -->
+        <div class="glass-card history-card">
+          <div class="card-header">
+            <h2 class="section-title"><span class="icon">📜</span> 추첨 기록</h2>
+            <button id="btn-clear-history" class="btn btn-text-only">전체 삭제</button>
+          </div>
+          <div class="history-list-wrapper">
+            <ul class="history-list" id="history-list">
+              <!-- History records dynamically added -->
+              <li class="empty-history" id="empty-history-msg">이전 추첨 기록이 없습니다.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>© 2026 청소 당번 추첨기. Built for fair & fun duty selection.</p>
+    </footer>
+  </div>
+
+  <!-- Custom JS -->
+  <script src="app.js"></script>
+</body>
+</html>
+
